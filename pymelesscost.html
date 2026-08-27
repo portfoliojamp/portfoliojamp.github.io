@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PymeLowCost | Digitalización Industrial</title>
+    
+    <!-- Bootstrap 5 LOCAL -->
+    <link rel="stylesheet" href="lib/bootstrap.min.css" >
+    <!-- FontAwesome LOCAL -->
+    <link rel="stylesheet" type="text/css" href='lib/fontawesome/css/all.min.css'>
+    <style>
+        /* --- TEMA VISUAL BASADO EN PORTAL MES LITE --- */
+        :root {
+            --mes-white: #FFFFFF;
+            --mes-bg-soft: #F8FAFC;    /* El fondo al hacer hover */
+            --mes-border: #E2E8F0;     /* Borde acero sutil */
+            --mes-blue-accent: #3498DB; /* El azul de resalte */
+            --mes-pizarra: #2C3E50;    /* Texto pizarra oscuro */
+        }
+
+        body {
+            background-color: #F1F5F9; /* Fondo de página ligeramente gris para que resalten las cards blancas */
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Reutilización de tu sistema de cuadrícula */
+        .portal-grid {
+            display: flex;             
+            flex-wrap: wrap;           
+            justify-content: center;   
+            gap: 20px;                 
+            padding: 40px 20px;
+        }
+
+        .portal-item {
+            flex: 0 0 calc(50% - 20px); 
+            min-width: 280px; /* Ajustado para que en el portfolio se vea más amplio */
+        }
+
+        @media (max-width: 992px) {
+            .portal-item {
+                flex: 0 0 calc(100% - 20px);
+            }
+        }
+
+        /* Tus Tarjetas Profesionales adaptadas al Portfolio */
+        .portal-card {
+            background-color: var(--mes-white);
+            border: 1px solid var(--mes-border);
+            border-radius: 15px;       
+            padding: 30px;
+            display: flex;             
+            flex-direction: column;
+            align-items: center;       
+            justify-content: center;   
+            text-decoration: none !important; 
+            transition: all 0.3s ease;
+            height: auto;    
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03); 
+        }
+
+        .portal-card:hover {
+            transform: translateY(-5px); 
+            background-color: var(--mes-bg-soft);   
+            border-color: var(--mes-blue-accent);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+        }
+
+        /* Estilo para los títulos de sección en el Portfolio (siguiendo tu estilo de span) */
+        .section-title {
+            color: var(--mes-pizarra);
+            font-weight: 800;          
+            font-size: 32px;
+            text-align: center;
+            text-transform: uppercase; 
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .portal-card span {
+            color: var(--mes-pizarra);
+            font-weight: 800;          
+            font-size: 22px;
+            text-align: center;
+            text-transform: uppercase; 
+            line-height: 1.1;          
+            font-style: italic;        
+            display: block;
+            margin-top: 15px;
+        }
+
+        /* Botón adaptado al estilo Acero/Azul */
+        .btn-mes {
+            background-color: var(--mes-blue-accent);
+            color: white;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-mes:hover {
+            background-color: var(--mes-pizarra);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        /* --- BARRA DE NAVEGACIÓN (ESTILO ACERO LIMPIO) --- */
+        .navbar {
+            background-color: #FFFFFF !important;
+            border-bottom: 2px solid #E2E8F0; /* Borde acero sutil */
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            color: #2C3E50 !important; /* Azul pizarra */
+            font-weight: 800;
+            font-style: italic;
+            font-size: 24px;
+        }
+
+        .nav-link {
+            color: #2C3E50 !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #3498DB !important; /* Resalte azul al pasar el mouse */
+        }
+
+        /* --- FONDO DEL HERO (ESTILO PIZARRA PROFESIONAL) --- */
+        .hero {
+            background-color: #2C3E50; /* El azul pizarra oscuro de tu marca */
+            background-image: linear-gradient(135deg, #2C3E50 0%, #1A252F 100%);
+            padding: 100px 0;
+            color: #FFFFFF;
+            text-align: center;
+            border-bottom: 5px solid #3498DB; /* Línea de acento azul */
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: 45px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: #BDC3C7; /* Gris claro para el subtítulo */
+            font-weight: 400;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        /* --- AJUSTE GLOBAL DE FONDO DE PÁGINA --- */
+        main, section {
+            background-color: #F8FAFC; /* Fondo muy suave para que las tarjetas blancas resalten */
+        }
+        /* --- BOTÓN DEMO GRATIS (ESTILO ACERO/AZUL) --- */
+        .btn-demo {
+            background-color: #3498DB !important; /* El azul de resalte de tus tarjetas */
+            color: #FFFFFF !important;
+            border: none;
+            border-radius: 12px;           /* Redondeado coherente con las cards */
+            padding: 10px 24px;
+            font-weight: 800;
+            font-style: italic;            /* Mismo estilo que tus spans */
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn-demo:hover {
+            background-color: #2C3E50 !important; /* Cambia a pizarra oscuro al pasar el mouse */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(44, 62, 80, 0.2);
+            color: #FFFFFF !important;
+        }
+
+        /* Nuevos estilos para la doble acción Online/Local */
+        /*.card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            width: 100%;
+        }*/
+        .btn-action {
+            flex: 1;
+            text-align: center;
+            padding: 10px 5px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        /*.btn-local { background-color: #F1F5F9; color: #2C3E50; border: 1px solid #E2E8F0; }*/
+        .btn-online { background-color: #3498DB; color: #FFFFFF; border: 1px solid #3498DB; }
+        .btn-online:hover { background-color: #2C3E50; color: #FFFFFF; }
+        /*.badge-online {
+            font-size: 9px;
+            background: #EBF8FF;
+            color: #3498DB;
+            padding: 2px 8px;
+            border-radius: 5px;
+            border: 1px solid #3498DB;
+            margin-bottom: 10px;
+        }*/
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">PYME<span class="text-primary">LESSCOST</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">Filosofía</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#soluciones">Soluciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.php">Academia</a></li>
+                    <!--<li class="nav-item"><a class="btn btn-industrial btn-sm ms-lg-3" href="#">Demo Gratis</a></li>-->
+                    <li class="nav-item"><a class="nav-link btn-demo ms-lg-3" href="#">Demo Gratis</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero text-center" id="inicio">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Democratizando la Digitalización Industrial</h1>
+            <p class="lead mb-4">Eficiencia real para PYMES mediante Hardware Low Cost y Redes Locales.</p>
+        </div>
+    </header>
+
+    <!-- INTRO (SOBRE NOSOTROS) -->
+    <section class="container" id="nosotros">
+        <div class="intro-box">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold mb-4">Nuestro Concepto</h2>
+                    <p class="text-muted">En un entorno donde la Industria 4.0 parece reservada solo para grandes presupuestos, nace <strong>PymeLowCost</strong>. Nuestra misión es romper la barrera del coste, permitiendo que cualquier planta de producción pueda dar el salto a la eficiencia digital.</p>
+                    <p class="text-muted">Basamos nuestro éxito en la combinación de <strong>PHP 7.4</strong> de alto rendimiento y la versatilidad de la <strong>Raspberry Pi 4</strong>, creando entornos seguros, locales y sin cuotas mensuales.</p>
+                    
+                    <p class="text-muted">¿Por qué somos diferentes?
+                    No vendemos software cerrado ni hardware propietario costoso. Hemos diseñado un ecosistema MES Lite basado en tecnologías ágiles (PHP/CodeIgniter) y hardware de bajo coste (como Raspberry Pi 4). El resultado es una solución potente, flexible y, sobre todo, honesta:
+                    Hardware accesible: Aprovecha el potencial de los micro-PCs para reducir la inversión inicial drásticamente.
+                    Adaptabilidad total: Tres niveles (Basic, Complet y Pro) que crecen contigo, permitiendo incluso la autoinstalación a coste cero.
+                    Enfoque en el proceso: Desde la trazabilidad hasta el análisis de KPIs, cubrimos cada rincón de tu fábrica sin complicaciones innecesarias.
+                    Creemos en la soberanía tecnológica de la PYME: tus datos, tu red local, tu crecimiento. Digitalizar tu empresa ya no es una cuestión de presupuesto, sino de decisión.</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="p-4 border">
+                        <h4 class="fw-bold">Ahorro Estimado</h4>
+                        <span class="display-5 fw-bold text-primary">-80%</span>
+                        <p class="small text-uppercase mt-2">Vs. Software Tradicional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- SECCIÓN SOLUCIONES, PRECIOS Y DESCARGAS -->
+    <section class="container my-5 py-5" id="soluciones">
+        <div class="text-center mb-5">
+            <h6 class="text-primary fw-bold text-uppercase">SOLUCIONES Y PRECIOS</h6>
+            <h2 class="fw-bold">Comienza la Digitalización</h2>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- MES Basic -->
+            <div class="col-12 mb-3">
+                <h4 class="fw-bold border-bottom pb-2">Ecosistema MES Lite</h4>
+            </div>
+            <div class="col-md-4">
+                
+                <div class="card h-100 shadow-sm border-0 bg-light">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-success text-uppercase">Open Source</span>
+                            <h4 class="fw-bold m-0">0 €</h4>
+                        </div>
+                        <h3 class="h5 fw-bold">MES Lite Basic</h3>
+                        <p class="small text-muted">Gestión de operaciones y operarios. Ideal para auto-implementación en Raspberry Pi.</p>
+                        <hr>
+                        <ul class="list-unstyled mb-4 small">
+                            <li><i class="fas fa-check text-success me-2"></i>Órdenes de Trabajo</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Gestión de Operarios</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Instalación Local</li>
+                        </ul>
+                        <a href="downloads/mes_basic_v1.zip" class="btn btn-outline-dark w-100 fw-bold">
+                            <i class="fas fa-download me-2"></i>DESCARGAR V.1
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MES Complet -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-primary border-2">
+                    <div class="card-body p-4 text-center">
+                        <span class="badge bg-primary text-uppercase mb-3">El más popular</span>
+                        <h3 class="h5 fw-bold">MES Lite Complet</h3>
+                        <h4 class="display-6 fw-bold text-primary my-3">Consultar</h4>
+                        <p class="small text-muted">Añade trazabilidad, ingeniería y gestión documental técnica.</p>
+                        <hr>
+                        <ul class="list-unstyled mb-4 small text-start">
+                            <li><i class="fas fa-plus text-primary me-2"></i>Todo lo del Basic</li>
+                            <li><i class="fas fa-check text-primary me-2"></i>Trazabilidad avanzada</li>
+                            <li><i class="fas fa-check text-primary me-2"></i>Gestión de Ingeniería</li>
+                        </ul>
+                        <a href="#contacto" class="btn btn-primary w-100 fw-bold">SOLICITAR OFERTA</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MES Pro -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 bg-dark text-white">
+                    <div class="card-body p-4 text-center">
+                        <span class="badge bg-warning text-dark text-uppercase mb-3">Empresarial</span>
+                        <h3 class="h5 fw-bold">MES Lite Pro</h3>
+                        <h4 class="display-6 fw-bold text-warning my-3">Consultar</h4>
+                        <p class="small text-white-50">Análisis masivo de datos y KPIs en tiempo real para decisiones críticas.</p>
+                        <hr class="border-white">
+                        <ul class="list-unstyled mb-4 small text-start">
+                            <li><i class="fas fa-plus text-warning me-2"></i>Todo lo del Complet</li>
+                            <li><i class="fas fa-check text-warning me-2"></i>Dashboards en tiempo real</li>
+                            <li><i class="fas fa-check text-warning me-2"></i>Análisis KPISTOL incluido</li>
+                        </ul>
+                        <a href="#contacto" class="btn btn-warning w-100 fw-bold">PEDIR PRESUPUESTO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        TABLA DE HERRAMIENTAS EXTRAS 
+        <div class="mt-5 p-4 bg-light border rounded">
+            <h4 class="fw-bold mb-4"><i class="fas fa-tools me-2 text-primary"></i>Herramientas Específicas (Add-ons)</h4>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle bg-white">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Módulo</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Obtener</th>
+                            <th>Online</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>QTools / DataTools</strong></td>
+                            <td class="small">Análisis de datos desde CSV/Excel y calidad.</td>
+                            <td><span class="text-success">Disponible</span></td>
+                            <td><a href="#" class="btn btn-sm btn-outline-primary">Comprar / Info</a></td>
+                            <td><a href="#" class="btn-action btn-online"><i class="fas fa-globe me-1"></i> Ejecutar Online</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>KPISTOL</strong></td>
+                            <td class="small">Diseño de indicadores personalizados.</td>
+                            <td><span class="text-success">Disponible</span></td>
+                            <td><a href="#" class="btn btn-sm btn-outline-primary">Comprar / Info</a></td>
+                            <td><a href="#" class="btn-action btn-online"><i class="fas fa-globe me-1"></i> Ejecutar Online</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>GESDOC</strong></td>
+                            <td class="small">Auditorías 5S y Seguridad.</td>
+                            <td><span class="text-warning">Próximamente</span></td>
+                            <td><button disabled class="btn btn-sm btn-light">Info</button></td>
+                            <td><a href="#" class="btn-action btn-online"><i class="fas fa-globe me-1"></i> Ejecutar Online</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!-- SECCIÓN CONTACTO -->
+    <section class="py-5" id="contacto" style="background-color: #f8f9fa;">
+        <div class="container py-4">
+            <div class="row g-5">
+                <!-- Información de Contacto -->
+                <div class="col-lg-5">
+                    <h6 class="text-primary fw-bold text-uppercase">Contacto</h6>
+                    <h2 class="fw-bold mb-4">¿Hablamos de tu proyecto?</h2>
+                    <p class="text-muted mb-5">Si necesitas una implementación personalizada, soporte técnico para tu Raspberry Pi o una adaptación a medida de los módulos MES, no dudes en escribirme.</p>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-circle shadow-sm me-3" style="width: 50px; height: 50px; background: white; color: #0d47a1; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Email Profesional</h6>
+                            <p class="mb-0 text-muted">tu-email@ejemplo.com</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-circle shadow-sm me-3" style="width: 50px; height: 50px; background: white; color: #0d47a1; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">LinkedIn</h6>
+                            <p class="mb-0 text-muted">://linkedin.com</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <div class="icon-circle shadow-sm me-3" style="width: 50px; height: 50px; background: white; color: #0d47a1; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Ubicación</h6>
+                            <p class="mb-0 text-muted">Disponible para proyectos remotos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario de Contacto -->
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm p-4">
+                        <form action="procesar_contacto.php" method="POST">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Nombre</label>
+                                    <input type="text" name="nombre" class="form-control rounded-0" placeholder="Tu nombre" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Email</label>
+                                    <input type="email" name="email" class="form-control rounded-0" placeholder="nombre@empresa.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold"></label>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Asunto</label>
+                                    <select name="asunto" class="form-select rounded-0">
+                                        <option value="presupuesto">Solicitar Presupuesto (Complet/Pro)</option>
+                                        <option value="soporte">Soporte Técnico</option>
+                                        <option value="colaboracion">Colaboración Freelance</option>
+                                        <option value="otro">Otro motivo</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Mensaje</label>
+                                    <textarea name="mensaje" class="form-control rounded-0" rows="5" placeholder="Cuéntame brevemente qué necesitas..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-primary w-100 fw-bold py-3" style="border-radius: 0;">ENVIAR MENSAJE</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container text-center">
+            <p>© 2024 PymeLowCost | Soluciones de Ingeniería Freelance</p>
+        </div>
+    </footer>
+
+    <!-- JS LOCAL -->
+    <script src="lib/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
