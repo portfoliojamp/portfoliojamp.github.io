@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Profesional - Ingeniería de Calidad & OT</title>
+    
+    <!-- EN ESTE ESPACIO PEGAREMOS EL BLOQUE DE ESTILOS CSS DE LA SEGUNDA ENTREGA -->
+        <style>
+        /* --- VARIABLES DE DISEÑO (Colores industriales y tipografía) --- */
+        :root {
+            --color-principal: #1e293b;  /* Azul oscuro industrial */
+            --color-acento: #0284c7;     /* Azul tecnológico */
+            --color-fondo: #f8fafc;      /* Gris muy claro de fondo */
+            --color-tarjeta: #ffffff;    /* Blanco para los bloques */
+            --color-texto: #334155;      /* Gris oscuro para el texto */
+            --color-texto-claro: #64748b;/* Gris medio para etiquetas */
+            --fuente: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* --- ESTILOS GENERALES Y RESETEO --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--fuente);
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            padding-top: 70px; /* Evita que la cabecera fija tape el contenido */
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- CABECERA FIJA (NAVBAR) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-principal);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* --- SECCIÓN PRINCIPAL (HERO) --- */
+        .hero {
+            background: linear-gradient(135deg, var(--color-principal) 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: 1.3rem;
+            color: var(--color-acento);
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+        }
+
+        /* --- TÍTULOS DE SECCIÓN --- */
+        .seccion-titulo {
+            font-size: 1.8rem;
+            color: var(--color-principal);
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--color-acento);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* --- TARJETAS DE EXPERIENCIA (GRID) --- */
+        .grid-pilares {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-pilares {
+                grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas grandes */
+            }
+        }
+
+        .tarjeta-pilar {
+            background-color: var(--color-tarjeta);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--color-acento);
+        }
+
+        .tarjeta-pilar h3 {
+            color: var(--color-principal);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .tarjeta-pilar ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .tarjeta-pilar li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tarjeta-pilar li::before {
+            content: "•";
+            color: var(--color-acento);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* --- ECOSISTEMA MES (ACORDEÓN) --- */
+        .mes-container {
+            background-color: var(--color-tarjeta);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-top: 15px;
+        }
+
+        .mes-intro {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--color-texto-claro);
+        }
+
+        .acordeon-item {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .acordeon-boton {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 15px 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--color-principal);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .acordeon-boton:hover {
+            background-color: #f1f5f9;
+        }
+
+        .acordeon-boton::after {
+            content: '+';
+            font-size: 1.3rem;
+            color: var(--color-acento);
+            transition: transform 0.3s;
+        }
+
+        .acordeon-item.activo .acordeon-boton::after {
+            content: '−';
+        }
+
+        .acordeon-contenido {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f8fafc;
+            padding: 0 15px;
+        }
+
+        .acordeon-contenido p {
+            padding: 15px 0;
+            font-size: 0.95rem;
+            color: var(--color-texto);
+        }
+
+        /* --- COMPETENCIAS (BADGES) --- */
+        .stack-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .badge {
+            background-color: #e2e8f0;
+            color: var(--color-principal);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .badge.tecnologico {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+
+        /* --- SECCIÓN CONTACTO --- */
+        .contacto-box {
+            background-color: var(--color-principal);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contacto-box p {
+            margin-bottom: 25px;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #026ca3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secundario {
+            background-color: transparent;
+            border: 2px solid #cbd5e1;
+        }
+
+        .btn-secundario:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--color-texto-claro);
+            font-size: 0.85rem;
+        }
+
+        /* --- AJUSTES RESPONSIVOS (MÓVILES) --- */
+        @media (max-width: 768px) {
+            body { padding-top: 110px; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .nav-links a { margin: 0 10px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero h2 { font-size: 1.1rem; }
+            .contacto-box { padding: 20px; }
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- CABECERA FIJA (BARRA DE NAVEGACIÓN) -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">[TU NOMBRE Y APELLIDOS]</div>
+            <nav class="nav-links">
+                <a href="#trayectoria">Trayectoria</a>
+                <a href="#mes">Sistema MES</a>
+                <a href="#producto-mes">Mi Solución MES low-cost</a> <!-- Nuevo enlace corto -->
+                <a href="#stack">Habilidades</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contenedor">
+
+        <!-- BLOQUE DE BIENVENIDA -->
+        <section class="hero">
+            <h1>Ingeniería de Calidad & Desarrollo Web Industrial (OT)</h1>
+            <h2>Especialista en la optimización y digitalización del suelo de fábrica</h2>
+            <p>Combinación única de más de 30 años liderando la gestión de calidad en plantas productivas (Automoción y Electrodomésticos) con 10 años desarrollando sistemas de software a medida (MES) para la captura, trazabilidad y análisis estadístico de datos en tiempo real.</p>
+        </section>
+
+        <!-- PILARES DE TRAYECTORIA PROFESIONAL -->
+        <section id="trayectoria">
+            <h2 class="seccion-titulo">Trayectoria y Áreas de Experiencia</h2>
+            <div class="grid-pilares">
+                
+                <div class="tarjeta-pilar">
+                    <h3>1. Dirección y Gestión de Calidad de Planta</h3>
+                    <ul>
+                        <li><strong>Sectores clave:</strong> Componentes de automoción (equipos limpiaparabrisas y motores eléctricos).</li>
+                        <li><strong>Rol ejercido:</strong> Responsable de Calidad Planta (Calidad Producto Serie).</li>
+                        <li><strong>Alcance:</strong> Aseguramiento de estándares de calidad en líneas de producción continua, resolución de incidencias en serie, auditorías y cumplimiento de normativas de cliente bajo entornos de alta exigencia.</li>
+                    </ul>
+                </div>
+
+                <div class="tarjeta-pilar">
+                    <h3>2. Ingeniería de Laboratorio y Calidad de Proveedores</h3>
+                    <ul>
+                        <li><strong>Sectores clave:</strong> Electrónica industrial y pequeño electrodoméstico.</li>
+                        <li><strong>Roles ejercidos:</strong> Técnico de Calidad de Proveedores, Técnico de Laboratorio y Responsable de Laboratorio de Ingeniería de Calidad.</li>
+                        <li><strong>Alcance:</strong> Recepción y testeo avanzado de materiales. Dirección de laboratorios de ensayos, diseño de planes de inspección y control estadístico de procesos antes de la fase de ensamble.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EL PROYECTO MES (DESPLEGABLE INTERACTIVO) -->
+        <section id="mes">
+            <h2 class="seccion-titulo">Proyecto Destacado: Ecosistema MES</h2>
+            <div class="tarjeta-pilar" style="border-left-color: #0f172a;">
+                <h3>Desarrollo Completo de Software Industrial a Medida</h3>
+                <p>Durante la última década en el área de OT, conceptualicé, programé y mantuve de forma integral un sistema <strong>MES (Manufacturing Execution System)</strong> centrado en la calidad y la captura de datos en planta.</p>
+                
+                <div class="mes-container">
+                    <p class="mes-intro">Haz clic en cada módulo para conocer su alcance técnico:</p>
+                    
+                    <!-- Módulo 1 -->
+                    <div class="acordeon-item">
+                        <button class="acordeon-boton">Interfaces de Planta (Operarios y TV)</button>
+                        <div class="acordeon-contenido">
+                            <p>Desarrollo de pantallas táctiles específicas para operarios de planta (diseñadas para una entrada de datos rápida y sin errores) y paneles web dinámicos optimizados para televisores informativos que muestran el estado de las líneas en tiempo real.</p>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 2 -->
+                    <div class="acordeon-item">
+                        <button class="acordeon-boton">Editores de Planes de Control e Inspección</button>
+                        <div class="acordeon-contenido">
+                            <p>Herramientas digitales que sustituyen el papel, permitiendo a los ingenieros definir, modificar y activar de forma inmediata las pautas de control y frecuencias de inspección que los operarios deben seguir en cada orden.</p>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 3 -->
+                    <div class="acordeon-item">
+                        <button class="acordeon-boton">Módulos de Registro y Trazabilidad Extensa</button>
+                        <div class="acordeon-contenido">
+                            <p>Captura avanzada desde planta y oficinas de variables físicas, atributos de producto, registros de rechazos, volumen de producción y validaciones de arranque (startup). Todo conectado en una base de datos indexada que garantiza la trazabilidad completa del producto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 4 -->
+                    <div class="acordeon-item">
+                        <button class="acordeon-boton">Analítica de Datos y Herramientas Estadísticas</button>
+                        <div class="acordeon-contenido">
+                            <p>Módulo de cálculo matemático integrado encargado de procesar los registros de planta para generar gráficos de control, estadísticas de proceso y resolver cálculos repetitivos de ingeniería de manera automática.</p>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 5 -->
+                    <div class="acordeon-item">
+                        <button class="acordeon-boton">Gestión Documental y Órdenes de Proceso</button>
+                        <div class="acordeon-contenido">
+                            <p>Módulo centralizado para inyectar documentación técnica de consulta directa en las pantallas de los operarios según la orden de fabricación activa, asegurando el control absoluto ante cambios de proceso.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE COMPETENCIAS Y TECNOLOGÍAS -->
+        <section id="stack">
+            <h2 class="seccion-titulo">Competencias y Tecnologías</h2>
+            
+            <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #64748b;">Desarrollo de Software (OT):</h3>
+            <div class="stack-flex">
+                <span class="badge tecnologico">HTML</span>
+                <span class="badge tecnologico">JavaScript</span>
+                <span class="badge tecnologico">PHP (v5.4 & v7.3)</span>
+                <span class="badge tecnologico">CodeIgniter 3 (CI3)</span>
+                <span class="badge tecnologico">SQL / Bases de Datos</span>
+                <span class="badge tecnologico">Python</span>
+            </div>
+
+            <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #64748b;">Ingeniería y Gestión de Calidad:</h3>
+            <div class="stack-flex">
+                <span class="badge">Calidad Producto Serie</span>
+                <span class="badge">Gestión de Laboratorios Industriales</span>
+                <span class="badge">Calidad de Proveedores</span>
+                <span class="badge">Control Estadístico de Procesos (SPC)</span>
+                <span class="badge">Automatismos Industriales</span>
+            </div>
+        </section>
+        <!-- NUEVA SECCIÓN: PROYECTO INDEPENDIENTE -->
+        <section id="producto-mes" style="margin-top: 50px;">
+            <h2 class="seccion-titulo">Mi solucion MES para la PYME Industrial</h2>
+            <div class="tarjeta-pilar" style="border-left-color: #f59e0b; background-color: #fffbeb;">
+                <span style="background-color: #fef3c7; color: #d97706; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 10px;">Proyecto Activo</span>
+                <h3>MES Genérico & Modular de Bajo Coste</h3>
+                <p>Aplicando toda mi experiencia en grandes plantas, estoy desarrollando un ecosistema digital diseñado exclusivamente para pequeñas y medianas empresas que necesitan dar el salto a la Industria 4.0 sin inversiones millonarias.</p>
+                
+                <ul style="margin-top: 15px; margin-bottom: 20px;">
+                    <li><strong>Software Modular Personalizable:</strong> Versión básica de enganche totalmente gratuita y módulos avanzados escalables según las necesidades de producción.</li>
+                    <li><strong>Infraestructura Low-Cost:</strong> Implementación mediante hardware accesible (Raspberry Pi 4) y servidores locales.</li>
+                    <li><strong>Seguridad Máxima de Planta:</strong> Funcionamiento en red interna cerrada. Datos 100% locales, sin dependencias de la nube ni conexiones externas vulnerables.</li>
+                </ul>
+                
+                <a href="pymelesscost.html" target="_blank" class="btn" style="background-color: #d97706; margin-left: 0;">Visitar la Web del Producto →</a>
+            </div>
+        </section>
+
+        <!-- BLOQUE DE CONTACTO -->
+        <section id="contacto" class="contacto-box">
+            <h2>¿Hablamos?</h2>
+            <p>Estoy disponible para proyectos de consultoría, optimización de sistemas OT o desarrollo de software industrial a medida.</p>
+            <a href="mailto:tu-correo@ejemplo.com" class="btn">Enviar Correo</a>
+            <a href="https://linkedin.com" target="_blank" class="btn btn-secundario">Ver LinkedIn</a>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 - Diseñado y programado de forma nativa.</p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT EN JAVASCRIPT NATIVO PARA EL ACORDEÓN -->
+    <script>
+        document.querySelectorAll('.acordeon-boton').forEach(boton => {
+            boton.addEventListener('click', () => {
+                const item = boton.parentElement;
+                const contenido = item.querySelector('.acordeon-contenido');
+                
+                // Si ya está abierto, lo cerramos
+                if (item.classList.contains('activo')) {
+                    contenido.style.maxHeight = null;
+                    item.classList.remove('activo');
+                } else {
+                    // Cerramos cualquier otro abierto para mantener la interfaz limpia
+                    document.querySelectorAll('.acordeon-item').forEach(otroItem => {
+                        otroItem.classList.remove('activo');
+                        otroItem.querySelector('.acordeon-contenido').style.maxHeight = null;
+                    });
+
+                    // Abrimos el actual calculando su scrollHeight dinámico
+                    item.classList.add('activo');
+                    contenido.style.maxHeight = contenido.scrollHeight + "px";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
